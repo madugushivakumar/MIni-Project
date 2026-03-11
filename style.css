@@ -60,12 +60,14 @@ display:none;
 display:flex;
 justify-content:center;
 align-items:center;
-
 }
 #nextBtn2{
 display:none;
 }
 
+#backtoclassBtn {
+  display:none;
+}
 
 
 
