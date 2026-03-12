@@ -63,12 +63,19 @@ align-items:center;
 }
 #nextBtn2{
 display:none;
+
 }
 
 #backtoclassBtn {
   display:none;
 }
 
+#buttons {
+display:flex;
+justify-content:center;
+
+
+}
 
 
 

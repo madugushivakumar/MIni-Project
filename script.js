@@ -15,9 +15,9 @@ const moneyText = document.getElementById("moneyText");
 const text = document.getElementById("text");
 
 /* Main control buttons */
-const classBtn = document.getElementById("class");
-const foodBtn = document.getElementById("food");
-const hostelBtn = document.getElementById("hostel");
+const classBtn = document.getElementById("classBtn");
+const foodBtn = document.getElementById("foodBtn");
+const hostelBtn = document.getElementById("hostelBtn");
 
 /* Story navigation buttons */
 const nextBtn = document.getElementById("nextBtn");
@@ -91,7 +91,8 @@ orderBtn.style.display = "none";
 nextBtn1.style.display = "none";
 continueBtn.style.display = "none";
 outBtn.style.display = "none";
-
+backtoclassBtn.style.display="none";
+feedbackBtn.style.display = "none";
 /* start story from beginning */
 storyIndex = 0;
 showStory();
@@ -168,6 +169,7 @@ continueBtn.style.display = "none";
 orderBtn.style.display = "block";
 feedbackBtn.style.display ="block";
 nextBtn2.style.display = "none";
+backtoclassBtn.style.display = "block";
 }
 
 
@@ -221,7 +223,6 @@ updateStats();
 feedbackBtn.style.display = "block";
 }
 
-
 /* ===============================
    Hostel Button (Rest System)
 ================================ */
@@ -242,7 +243,10 @@ feedbackBtn.style.display = "none";
 }
 backtoclassBtn.onclick = function() {
     backtoclassBtn.style.display ="none";
+    text.innerText= "Back to Class";
+  
 }
+ backtoclassBtn.onclick = classBtn.onclick;
 /* ===============================
    Initial UI Setup
 ================================ */
