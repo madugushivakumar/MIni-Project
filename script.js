@@ -4,7 +4,7 @@
 let energy = 100;
 let hunger = 60;
 let money = 120;
-
+let playerName = "";
 /* ===============================
    Getting HTML Elements
 ================================ */
@@ -31,22 +31,21 @@ const nextBtn2 = document.getElementById("nextBtn2");
 const orderBtn = document.getElementById("orderBtn");
 const feedbackBtn = document.getElementById("feedbackBtn");
 const backtoclassBtn = document.getElementById("backtoclassBtn");
+
 /* ===============================
    Story Dialogue System
 ================================ */
 let storyIndex = 0;
 
-/* Dialogue lines for class scene */
 let story = [
-{speaker:"Narrator",text:"You grab your bag and walk toward the college campus. The morning air is cool and students rush to class. Someone calling your name"},
-{speaker:"Sai",text:"Hey! Good morning. Did you prepare for today's lecture?"},
+{speaker:"Narrator",text:"You grab your bag and walk toward the college campus."},
+{speaker:"Sai",text:"Hey {name}! Good morning. Did you prepare for today's lecture?"},
 {speaker:"You",text:"Not really. I was planning to study last night."},
 {speaker:"Sai",text:"Same here! But the professor will explain something important today."},
 {speaker:"You",text:"Really? Then we should pay attention in class."},
-{speaker:"Sai",text:"Yeah hurry! The class is about to start."},
-{speaker:"Narrator",text:"You both walk into the classroom as the lecture begins."}
+{speaker:"Sai",text:"Yeah hurry {name}! The class is about to start."},
+{speaker:"Narrator",text:"{name} and Sai walk into the classroom as the lecture begins."}
 ];
-
 
 /* ===============================
    Fast Food Menu Items
@@ -59,9 +58,8 @@ let foodItems = [
 {name:"Chicken Noodles", price:8}
 ];
 
-
 /* ===============================
-   Update Player Stats on Screen
+   Update Player Stats
 ================================ */
 function updateStats(){
 energyText.innerText = energy;
@@ -69,39 +67,56 @@ hungerText.innerText = hunger;
 moneyText.innerText = money;
 }
 
-
 /* ===============================
-   Show Current Story Dialogue
+   Show Story Dialogue
 ================================ */
 function showStory(){
 let current = story[storyIndex];
-text.innerHTML = `<strong>${current.speaker}:</strong> ${current.text}`;
+if(storyIndex === 0){
+text.innerHTML = `
+<strong>${current.speaker}:</strong> ${current.text}
+<br><br>
+Enter your name:
+<input type="text" id="nameInput">
+<button id="submitName">Start</button>
+`;
+document.getElementById("submitName").onclick = function(){
+playerName = document.getElementById("nameInput").value;
+if(playerName === ""){
+playerName = "Student";
+}
+storyIndex++;
+showStory();
+};
+}
+else{
+let dialogue = current.text.replaceAll("{name}", playerName);
+text.innerHTML = `<strong>${current.speaker}:</strong> ${dialogue}`;
 }
 
+}
 
 /* ===============================
-   Go To Class Button Logic
+   Go To Class
 ================================ */
 classBtn.onclick = function(){
 
 nextBtn.style.display = "block";
 
-/* hide unrelated buttons */
 orderBtn.style.display = "none";
 nextBtn1.style.display = "none";
 continueBtn.style.display = "none";
 outBtn.style.display = "none";
 backtoclassBtn.style.display="none";
 feedbackBtn.style.display = "none";
-/* start story from beginning */
+
 storyIndex = 0;
 showStory();
 updateStats();
 }
 
-
 /* ===============================
-   Next Button For Story Progress
+   Next Story
 ================================ */
 nextBtn.onclick = function(){
 
@@ -112,7 +127,6 @@ showStory();
 }
 else{
 
-/* Story finished, show player choices */
 text.innerText = "The lecture continues... What will you do next?";
 
 nextBtn.style.display = "none";
@@ -121,23 +135,19 @@ outBtn.style.display = "block";
 }
 }
 
-
 /* ===============================
-   Continue Class Choice
+   Continue Class
 ================================ */
 continueBtn.onclick = function(){
 
 text.innerText = "My attendance is very low, so I decide to stay in class and continue the lecture.";
 
-/* show other option again */
 continueBtn.style.display = "none";
 outBtn.style.display = "block";
-
 }
 
-
 /* ===============================
-   Leave Class → Go To Fast Food
+   Leave Class → Fast Food
 ================================ */
 outBtn.onclick = function(){
 
@@ -146,32 +156,24 @@ text.innerText = "The class is too boring, so I decide to go to the fast food ce
 outBtn.style.display = "none";
 continueBtn.style.display = "none";
 
-/* show next step button */
 nextBtn2.style.display = "block";
 
-/* clicking next moves player to fast food center */
+/* move to fast food center */
 nextBtn2.onclick = foodBtn.onclick;
 }
 
-
 /* ===============================
-   Fast Food Center Entrance
+   Fast Food Center
 ================================ */
 foodBtn.onclick = function(){
 
 text.innerText = "Welcome to Fast Food Center.";
 
-nextBtn1.style.display="none";
-outBtn.style.display = "none";
-continueBtn.style.display = "none";
-
-/* allow ordering food */
 orderBtn.style.display = "block";
-feedbackBtn.style.display ="block";
-nextBtn2.style.display = "none";
 backtoclassBtn.style.display = "block";
-}
 
+nextBtn2.style.display = "none";
+}
 
 /* ===============================
    Display Food Menu
@@ -180,78 +182,61 @@ orderBtn.onclick = function(){
 
 text.innerHTML = "Available food items:<br><br>";
 
-foodItems.forEach((item,index)=>{
+feedbackBtn.style.display = "none";
 
+foodItems.forEach((item,index)=>{
 text.innerHTML += `
 <button onclick="buyFood(${index})">
 ${item.name} - $${item.price}
 </button><br>
 `;
-
 });
-
-/* hide order button after showing menu */
 orderBtn.style.display = "none";
 }
-
-
 /* ===============================
-   Buy Food Logic
+   Buy Food
 ================================ */
 function buyFood(index){
-
 let item = foodItems[index];
-
-/* Check if player has enough money */
 if(money < item.price){
-
 text.innerText = "You don't have enough money.";
 return;
 }
-
-/* Deduct money and reduce hunger */
 money -= item.price;
 hunger -= 20;
-
 if(hunger < 0) hunger = 0;
-
-/* show purchase result */
 text.innerText = `You bought ${item.name}.`;
-
-/* update stats on screen */
 updateStats();
+/* show feedback button */
 feedbackBtn.style.display = "block";
 }
-
 /* ===============================
-   Hostel Button (Rest System)
+   Hostel Rest
 ================================ */
 hostelBtn.onclick = function(){
-
 energy += 20;
-
 text.innerText = "You return to the hostel and rest for a while.";
-
 updateStats();
-
 }
-
+/* ===============================
+   Feedback System
+================================ */
 feedbackBtn.onclick = function(){
 text.innerText = "How was the food? Thanks for your feedback!";
 feedbackBtn.style.display = "none";
-
 }
-backtoclassBtn.onclick = function() {
-    backtoclassBtn.style.display ="none";
-    text.innerText= "Back to Class";
-  
+/* ===============================
+   Back To Class
+================================ */
+backtoclassBtn.onclick = function(){
+text.innerText = "You return to the classroom.";
+backtoclassBtn.style.display ="none";
+ nextBtn.style.display = "none";
+classBtn.onclick();
 }
- backtoclassBtn.onclick = classBtn.onclick;
 /* ===============================
    Initial UI Setup
 ================================ */
-
-/* hide buttons initially */
 orderBtn.style.display = "none";
 nextBtn.style.display = "none";
 nextBtn1.style.display = "none";
@@ -260,5 +245,5 @@ outBtn.style.display = "none";
 nextBtn2.style.display = "none";
 feedbackBtn.style.display ="none";
 backtoclassBtn.style.display ="none";
-/* display starting stats */
+
 updateStats();
