@@ -2,44 +2,80 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hostel Hustle</title>
+<title>🏫 Hostel Hustle</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
 <div id="game">
+
 <h1>🏫 Hostel Hustle</h1>
+
+<!-- ===============================
+     PLAYER STATS
+================================ -->
 <div id="stats">
 <span>Energy: <strong id="energyText">100</strong></span>
 <span>Hunger: <strong id="hungerText">60</strong></span>
 <span>Money: ₹<strong id="moneyText">120</strong></span>
+<span>Attendance: <strong id="attendanceText">60%</strong></span>
+<span id="dayText">Day 1</span>
 </div>
+
+<!-- ===============================
+     GAME STORY TEXT
+================================ -->
 <div id="text">
-You wake up in your hostel room.  
-Your first lecture is about to start.  
+You wake up in your hostel room.
+Your first lecture is about to start.
 What will you do today?
 </div>
+
+<!-- ===============================
+     STORY CHOICE BUTTONS
+================================ -->
 <div id="choiceButtons">
-<button id="continueBtn">Continue class</button>
-<button id="outBtn">Let's go out</button>
+
+<button id="continueBtn">Continue Class</button>
+
+<button id="outBtn">Let's Go Out</button>
+
 <div id="orderButton">
-<button id="orderBtn">Order</button>
+<button id="orderBtn">Order Food</button>
 </div>
+
 </div>
-<button id="nextBtn3">Next</button>
+
+<!-- ===============================
+     STORY NAVIGATION
+================================ -->
 <button id="nextBtn">Next</button>
 <button id="nextBtn1">Next</button>
 <button id="nextBtn2">Next</button>
+<button id="nextBtn3">Next</button>
+
+<!-- ===============================
+     EXTRA ACTION BUTTONS
+================================ -->
 <div id="buttons">
-<button id="feedbackBtn">FeedBack</button>
+<button id="feedbackBtn">Feedback</button>
 <button id="backtoclassBtn">Back To Class</button>
 </div>
 
+<!-- ===============================
+     MAIN GAME CONTROLS
+================================ -->
 <div id="controls">
-<button id="classBtn">Go To Class</button>
-<button id="foodBtn">Go To Fast Food Center</button>
-<button id="hostelBtn">Go To Hostel</button>
+<button id="classBtn">📚 Go To Class</button>
+<button id="foodBtn">🍔 Fast Food Center</button>
+<button id="hostelBtn">🏠 Go To Hostel</button>
+<button id="jobBtn">💼 Part Time Job</button>
 </div>
+
 </div>
+
 <script src="script.js"></script>
+
 </body>
 </html>
