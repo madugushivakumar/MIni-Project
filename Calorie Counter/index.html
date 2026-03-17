@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calorie Counter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+<h1>Calorie Counter</h1>
+<div class="budget-section">
+  <label for="budget">Budget</label>
+  <input type="number" id="budget" value="2000">
+</div>
+
+<fieldset id="breakfast">
+  <legend>Breakfast</legend>
+   <div class="entry">
+    <label for="breakfast-name-1">Entry 1 Name</label>
+    <input type="text" id="breakfast-name-1" placeholder="Food name">
+    <label for="breakfast-calories-1">Entry 1 Calories</label>
+    <input type="number" id="breakfast-calories-1" class="breakfast-calories" placeholder="Calories">
+  </div>
+</fieldset>
+
+<fieldset id="lunch">
+  <legend>Lunch</legend>
+</fieldset>
+
+<fieldset id="dinner">
+  <legend>Dinner</legend>
+</fieldset>
+
+<fieldset id="snacks">
+  <legend>Snacks</legend>
+</fieldset>
+
+<fieldset id="exercise">
+  <legend>Exercise</legend>
+</fieldset>
+
+<div class="entry-controls">
+<label>Add food or exercise:</label>
+<select id="entry-type">
+  <option value="breakfast">Breakfast</option>
+  <option value="lunch">Lunch</option>
+  <option value="dinner">Dinner</option>
+  <option value="snacks">Snacks</option>
+  <option value="exercise">Exercise</option>
+</select>
+<button id="addEntry">Add Entry</button>
+
+</div>
+
+<div class="action-buttons">
+<button id="calculate">Calculate Remaining Calories</button>
+<button id="clear">Clear</button>
+</div>
+<div id="result" class="result-box">
+<h2 id="status"></h2>
+<hr>
+<p id="budgetResult"></p>
+<p id="consumedResult"></p>
+<p id="burnedResult"></p>
+</div>
+
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>

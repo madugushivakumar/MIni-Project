@@ -1,0 +1,85 @@
+`body{
+ background:#1c1f3a;
+font-family:Arial, Helvetica, sans-serif;
+color:white;
+display:flex;
+justify-content:center;
+padding:40px;
+}
+
+.container{
+  width:700px;
+  margin:40px auto;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.budget-section{
+  margin-bottom:20px;
+}
+
+label{
+  margin-right:10px;
+}
+
+input{
+  margin-top:10px;
+  padding:5px;
+  width:650px;
+}
+
+fieldset{
+  border:2px solid #6b6f8f;
+  margin-bottom:15px;
+  padding:15px;
+}
+
+legend{
+  padding:0 8px;
+  font-weight:bold;
+}
+
+.entry-controls{
+  margin-top:20px;
+}
+.entry{
+  margin-top:15px;
+}
+
+select{
+  padding:5px;
+  margin-left:10px;
+}
+
+button{
+  background:#f4b400;
+  border:none;
+  padding:7px 12px;
+  margin-left:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  opacity:0.9;
+}
+
+.action-buttons{
+  margin-top:15px;
+}
+.result-box{
+  border:2px solid #6b6f8f;
+  margin-top:25px;
+  padding:20px;
+  text-align:center;
+}
+
+.result-box h2{
+  color:#9cff57;
+}
+#result{
+  display: none;
+}
